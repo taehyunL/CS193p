@@ -22,8 +22,6 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
-//                    cards.remove(at: chosenIndex)
-//                    cards.remove(at: potentialMatchIndex)
                 }
                 indexOfTheOneOnlyFaceUpCard = nil
             } else {
