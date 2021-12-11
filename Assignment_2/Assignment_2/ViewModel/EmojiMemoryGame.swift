@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+//Color정보포함, 따라서 Foundation 사용불가
 
 class EmojiMemoryGame: ObservableObject {
-
+    
+    @Published private var model: MemoryGame<String>
+    
+    private var theme: Theme
+    
     init() {
-        theme = EmojiMemoryGame.themes.randomElement()!
+        theme = EmojiMemoryGame.themes.randomElement()!//동일한 클래스에 있더라도 static 변수가 선언된 클래스 이름을 명시해줘야함
         theme.emojis.shuffle()
         model = EmojiMemoryGame.createMemoryGame(theme: theme)
     }
@@ -58,11 +63,7 @@ class EmojiMemoryGame: ObservableObject {
             theme.emojis[pairIndex]
         }
     }
-    
-    @Published private var model: MemoryGame<String>
-    
-    private var theme: Theme
-    
+
     var themeName: String {
         return theme.name
     }
