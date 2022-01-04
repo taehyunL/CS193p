@@ -8,9 +8,24 @@
 import SwiftUI
 
 class SetGameViewModel: ObservableObject {
-    @Published private var model: SetGame = SetGame(numberOfCards: 14)
+    typealias Card = SetGame<String>.Card
     
-    var cards: Array<SetGame.Card> {
+    static var emojis = ["🚲","🛵","🏍","🛺","🚔","🚍","🚡","🚠","🚟","🚃","🚞","🚄","🚈",
+                         "🚲","🛵","🏍","🛺","🚔","🚍","🚡","🚠","🚟","🚃","🚞","🚄","🚈"]
+    
+    @Published private var model = createSetGame()
+    
+    private static func createSetGame() -> SetGame<String> {
+        SetGame<String>(numberOfCards: 26) { pairIndex in
+            emojis[pairIndex]
+        }
+    }
+    
+    var cards: Array<Card> {
         model.cards
+    }
+    
+    func choose(_ card: Card) {
+        model.choose(card)
     }
 }
