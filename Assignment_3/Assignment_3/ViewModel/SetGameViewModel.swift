@@ -10,13 +10,12 @@ import SwiftUI
 class SetGameViewModel: ObservableObject {
     typealias Card = SetGame<String>.Card
     
-    static var emojis = ["🚲","🛵","🏍","🛺","🚔","🚍","🚡","🚠","🚟","🚃","🚞","🚄","🚈",
-                         "🚲","🛵","🏍","🛺","🚔","🚍","🚡","🚠","🚟","🚃","🚞","🚄","🚈"]
+    static var emojis = ["🚲","🛵","🏍","🛺","🚔","🚲","🛵","🏍","🛺","🚔","🚲","🛵","🏍","🛺","🚔","🚲","🛵","🏍","🛺","🚔"]
     
     @Published private var model = createSetGame()
     
     private static func createSetGame() -> SetGame<String> {
-        SetGame<String>(numberOfCards: 26) { pairIndex in
+        SetGame<String>(numberOfCards: 20) { pairIndex in
             emojis[pairIndex]
         }
     }
