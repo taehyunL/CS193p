@@ -12,21 +12,19 @@ struct ContentView: View {
     
     var body: some View {
         AspectVGrid(items: game.cards, aspectRatio: 2/3) { card in
-            if card.isChoosen == true && card.isMatched == false {
+            if card.isChoosen == true {
                 CardView(card: card)
                     .foregroundColor(.blue)
                     .padding(4)
                     .onTapGesture {
                         game.choose(card)
-                        print("check true")
                     }
-            } else if card.isChoosen == false && card.isMatched == false {
+            } else if card.isChoosen == false {
                 CardView(card: card)
                     .foregroundColor(.red)
                     .padding(4)
                     .onTapGesture {
                         game.choose(card)
-                        print("check false")
                     }
             }
         }
@@ -44,13 +42,14 @@ struct CardView: View {
                 let shape = RoundedRectangle(cornerRadius: 10)
                 shape.fill().foregroundColor(.white)
                 shape.strokeBorder(lineWidth: 3)
-                Text(card.content)
+                Text(card.content).font(font(in: geometry.size))
 //                Rhombus(geometry: geometry)
     //            Text(card.content) 여기에 카드 content 추가
-    //            shape.opacity(0) 투명도 설정하기
-
             }
         }
+    }
+    func font(in size: CGSize) -> Font {
+        Font.system(size: min(size.width, size.height) * 0.7)
     }
 }
 
