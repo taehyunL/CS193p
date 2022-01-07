@@ -11,25 +11,41 @@ struct ContentView: View {
     @ObservedObject var game: SetGameViewModel
     
     var body: some View {
-        AspectVGrid(items: game.cards, aspectRatio: 2/3) { card in
-            if card.isChoosen == true {
-                CardView(card: card)
-                    .foregroundColor(.blue)
-                    .padding(4)
-                    .onTapGesture {
-                        game.choose(card)
-                    }
-            } else if card.isChoosen == false {
-                CardView(card: card)
-                    .foregroundColor(.red)
-                    .padding(4)
-                    .onTapGesture {
-                        game.choose(card)
-                    }
+        VStack {
+            AspectVGrid(items: game.cards, aspectRatio: 2/3) { card in
+                if card.isChoosen == true {
+                    CardView(card: card)
+                        .foregroundColor(.blue)
+                        .padding(4)
+                        .onTapGesture {
+                            game.choose(card)
+                        }
+                } else if card.isChoosen == false {
+                    CardView(card: card)
+                        .foregroundColor(.red)
+                        .padding(4)
+                        .onTapGesture {
+                            game.choose(card)
+                        }
+                }
             }
+            .foregroundColor(.red)
+            .padding(.horizontal)
+            HStack {
+                Button("new game") {
+                    game.newGame()
+                }
+                
+                Spacer()
+                
+                Button("3 more cards") {
+                    
+                }
+            }
+            .font(.system(size: 25))
+            .padding()
         }
-        .foregroundColor(.red)
-        .padding(.horizontal)
+
     }
 }
 
